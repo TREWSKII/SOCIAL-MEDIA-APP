@@ -23,7 +23,7 @@ user.virtual('friendCount').get(function () {
   });
   
   // Initialize our Post model
-  const User = model('User', user);
+  const User = mongoose.model('User', user);
   
   module.exports = User;
   
