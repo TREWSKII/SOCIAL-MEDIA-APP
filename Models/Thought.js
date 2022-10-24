@@ -23,4 +23,4 @@ thought.virtual('reactionCount').get(function () {
 // not in reaction going to stay a schema 
 const Thought = model('Thought', thought);
 
-module.export = Thought;
+module.exports = Thought;
