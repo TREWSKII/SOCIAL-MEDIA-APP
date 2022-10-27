@@ -34,5 +34,33 @@ module.exports = {
         : res.json(user)
     ) .catch((err) => res.status(500).json(err));
   },
+  // POST add friend to user's friend list. Use activity 25 for reference
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  // DELETE remove friend
+  removeFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 
 };
