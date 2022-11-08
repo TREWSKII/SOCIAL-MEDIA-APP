@@ -64,3 +64,5 @@ module.exports = {
   },
 
 };
+
+module.exports = User;
