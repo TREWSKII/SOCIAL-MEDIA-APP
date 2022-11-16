@@ -1,4 +1,4 @@
-const User = require("../Models/User");
+const User = require("../models/User");
 
 module.exports = {
   getUsers(req, res) {
@@ -16,10 +16,11 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  updateUser(req, res) { 
-    User.findByIdAndUpdate({_id: req.params.courseId },
-        { $set: req.body },
-        { runValidators: true, new: true  }).then((user) =>  )
+  updateUser(req, res) {
+    User.findByIdAndUpdate({ _id: req.params.courseId },
+      { $set: req.body },
+      { runValidators: true, new: true }).then((user) => 
+        res.send (user))
   },
   // create a new user
   createUser(req, res) {
@@ -32,7 +33,7 @@ module.exports = {
       !user
         ? res.status(404).json({ message: "No user with that ID" })
         : res.json(user)
-    ) .catch((err) => res.status(500).json(err));
+    ).catch((err) => res.status(500).json(err));
   },
   // POST add friend to user's friend list. Use activity 25 for reference
   addFriend(req, res) {
